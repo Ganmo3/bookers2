@@ -3,10 +3,12 @@
 <% @books.each do |book| %>
 <div>
   <%= image_tag 'default-image.jpg' %>
-  <!-- user.nameが呼び出されない -->
-  <p><%= book.user.name %></p>
-  <p>Title</p>
-  <span><%= book.title %></span>
+
+    <%= link_to book_path(book.id) do %>
+      <p>Title</p>
+    <% end %>
+
+    <span><%= book.title %></span>
 
   <p>Opinion</p>
   <span><%= book.body %></span>
