@@ -1,31 +1,27 @@
 <!-- 共通ページ -->
-<!-- ユーザ詳細 -->
-
-
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  
-  <% if @user == current_user %>
-  <p><%= link_to "編集", edit_user_path(@user) %></p>
-  <% end %>
-
-</div>
-
+<%= render partial: 'side', locals: { user: current_user, book: @book } %>
+   
 <!-- ユーザ投稿一覧 -->
-<% @books.each do |book| %>
-<div>
-
-  <%= image_tag book.user.get_profile_image(100,100) %>
-
-  <%= link_to book_path(book.id) do %>
-      <p>Title</p>
-  <% end %>
-
-  <span><%= book.title %></span>
-
-  <p>Opinion</p>
-  <span><%= book.body %></span>
-
-</div>
-<% end %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      
+      <table class="table table-hover table-inverse">
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+        <% @books.each do |book| %>
+        <tbody>
+          <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+          <td><%= link_to book_path(book.id) do %>
+              <span><%= book.title %></span></td>
+          <td><span><%= book.body %></span></td>
+        </tbody>
+        <% end %>
+        <% end %>
+      </div>
+      </table>
+    </div>
+  </div>
+</div>        

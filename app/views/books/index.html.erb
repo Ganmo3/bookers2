@@ -1,23 +1,26 @@
 <!-- 部分テンプレート呼び出し -->
 <%= render partial: 'users/side', locals: { user: current_user, book: @book } %>
 
-<div class="col-md-8 offset-md-1">
-<h1>Books</h1>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
 
-<% @books.each do |book| %>
-<div>
-
-  <%= image_tag book.user.get_profile_image(100,100) %>
-
-    <%= link_to book_path(book.id) do %>
-      <p>Title</p>
-    <% end %>
-
-    <span><%= book.title %></span>
-
-  <p>Opinion</p>
-  <span><%= book.body %></span>
-</div>
-<% end %>
-
+      <table class="table table-hover table-inverse">
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+        <% @books.each do |book| %>
+        <tbody>
+          <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+          <td><%= link_to book_path(book.id) do %>
+              <span><%= book.title %></span></td>
+          <td><span><%= book.body %></span></td>
+        </tbody>
+        <% end %>
+        <% end %>
+      </div>
+      </table>
+    </div>
+  </div>
 </div>
