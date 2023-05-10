@@ -1,7 +1,7 @@
 <!-- 部分テンプレート呼び出し -->
 <%= render partial: 'users/side', locals: { user: current_user, book: @book } %>
 
-
+<div class="col-md-8 offset-md-1">
 <h1>Books</h1>
 
 <% @books.each do |book| %>
@@ -19,3 +19,5 @@
   <span><%= book.body %></span>
 </div>
 <% end %>
+
+</div>
