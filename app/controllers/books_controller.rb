@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
+  
   def new
     @book = Book.new
   end
@@ -24,19 +26,14 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @user = @book.user
+    @books = Book.new
   end
 
   def edit
-    
-    is_matching_login_user
-    
-    @book = Book.find(params[:id])
+        @book = Book.find(params[:id])
   end
 
   def update
-    
-    is_matching_login_user
-    
     @book = Book.find(params[:id])
     if @book.update(book_params)
       flash[:notice] = "You have updated book successfully."

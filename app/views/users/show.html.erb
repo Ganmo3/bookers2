@@ -3,7 +3,7 @@
 </div>
 
 <!-- 共通ページ -->
-<%= render partial: 'side', locals: { user: @target_user, book: @book } %>
+<%= render partial: 'side', locals: { user: @users, book: @book } %>
    
 <!-- ユーザ投稿一覧 -->
     <div class="col-md-8 offset-md-1">
@@ -17,7 +17,11 @@
         </tr>
         <% @books.each do |book| %>
         <tbody>
-          <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+          <td>
+            <%= link_to user_path(book.user) do %>
+              <%= image_tag book.user.get_profile_image(100,100) %>
+            <% end %>
+          </td>
           <td><%= link_to book_path(book.id) do %>
               <span><%= book.title %></span></td>
           <td><span><%= book.body %></span></td>
